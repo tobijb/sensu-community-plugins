@@ -96,7 +96,7 @@ class PostgresMetricGraphite < Sensu::Plugin::Metric::CLI::Graphite
       result.each do |row|
 
         output_columns.each do |column|
-          output "#{config[:scheme]}.#{row['schema.table']}.#{column}, #{row[column]}, #{timestamp}"
+          output "#{config[:scheme]}.#{row['schema.table']}.#{column}", row[column], timestamp
         end
       end
     end

@@ -76,9 +76,9 @@ class PostgresConnectionsMetric < Sensu::Plugin::Metric::CLI::Graphite
     conn.exec(request) do |result|
       result.each do |row|
         total_connections += row['count'].to_i;
-        output "#{config[:scheme]}.#{row['datname']}.connections.waiting.#{TRUE_OR_FALSE[row['waiting']]}, #{row['count']}, #{timestamp}"
+        output "#{config[:scheme]}.#{row['datname']}.connections.waiting.#{TRUE_OR_FALSE[row['waiting']]}", row['count'], timestamp
       end
-      output "#{config[:scheme]}.connections.total, #{total_connections}, #{timestamp}"
+      output "#{config[:scheme]}.connections.total", total_connections, timestamp
     end
 
     ok
